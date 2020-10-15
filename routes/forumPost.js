@@ -1,16 +1,19 @@
 const express = require('express');
+const verify = require('../middleware/verify');
 const ForumPost = require('../modals/ForumPost');
 const StudentUser = require('../modals/StudentUser');
 
 module.exports = (app) => {
 
   app.post(
-    '/api/forum/post',
+    '/api/forum/post/:type',
     async (req, res) => {
       try {
+        const postType = req.params.type;
         const user = await StudentUser.findById(req.user.id).select('-password');
-  
+
         const newPost = new ForumPost({
+          type: postType,
           text: req.body.text,
           name: user.name,
           user: req.user.id, // the user={id:fdmfmldm} which comes with token
@@ -27,9 +30,15 @@ module.exports = (app) => {
     }
   );
   
-  app.get('/api/forum/post', verify, async (req, res) => {
+  app.get('/api/forum/post/:type', verify, async (req, res) => {
     try {
-      const posts = await ForumPost.find().sort({ date: -1 });
+      const postType = req.params.type;
+      let posts;
+      if(postType === 'all'){
+        posts = await ForumPost.find().sort({ date: -1 });
+      }else{
+        posts = await ForumPost.findById({type: postType}).sort({ date: -1 });
+      }
       res.json(posts);
     } catch (err) {
       // console.error(err.message);

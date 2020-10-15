@@ -10,6 +10,9 @@ const ForumPostSchema = new Schema({
     type: String,
     required: true
   },
+  postType: {
+    type: String
+  },
   name: {
     type: String
   },
