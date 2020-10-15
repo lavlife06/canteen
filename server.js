@@ -2,8 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const connectDB = require('./config/db');
 
-// mongoose.connect(keys.mongoURI,{ useNewUrlParser: true, useUnifiedTopology: true  });
+connectDB();
 
 const app = express();
 
