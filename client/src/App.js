@@ -1,8 +1,9 @@
 import React from 'react';
+import Login from './components/auth/login';
 
 function App() {
   return (
-    <div>Helo bhai log kaise ho</div>
+    <Login/>
   );
 }
 
