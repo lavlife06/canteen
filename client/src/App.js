@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Forum from "./components/forum/forum";
+import SelectedTopicDetails from "./components/forum/selectedTopicDetails";
 import Topicdetails from "./components/forum/topicDetails";
 
 function App() {
@@ -15,6 +16,11 @@ function App() {
         <Switch>
           <Route exact path="/forums" component={Forum} />
           <Route exact path="/forums/:topics" component={Topicdetails} />
+          <Route
+            exact
+            path="/forums/:topics/:id"
+            component={SelectedTopicDetails}
+          />
           {/* <Route exact path="/login" component={Login} /> */}
           {/* <Route exact path="/profiles" component={Profiles} /> */}
           {/* <Route exact path="/profile/:id" component={Profile} /> */}
