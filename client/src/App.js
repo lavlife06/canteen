@@ -34,6 +34,12 @@ function App() {
         {/* </section> */}
       </Fragment>
     </Router>
+import React from 'react';
+import Login from './components/auth/login';
+
+function App() {
+  return (
+    <Login/>
   );
 }
 
